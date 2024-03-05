@@ -10,8 +10,8 @@ def get_word():
 def play(word):
     word_completion = "_" * len(word)
     guessed = False
-    guessed_letters = []
-    guessed_words = []
+    guessed_letters = []  # список загаданных игроков букв, даже если они неправильные
+    guessed_words = []  # список загаданных игроков слов, даже если они неправильные
     tries = 6
 
     print("Давайте сыграем в виселицу!")
@@ -23,13 +23,13 @@ def play(word):
         guess = input("Попытайтесь угадать букву или слово целиком ").upper()
         if len(guess) == 1 and guess.isalpha():
             if guess in guessed_letters:
-                print(f"Вы уже угадали букву {guess}")
+                print(f"\nВы уже загадывали букву {guess}")
             elif guess not in word:
-                print(f"В слове нет буквы {guess}")
+                print(f"\nВ слове нет буквы {guess}")
                 tries -= 1
                 guessed_letters.append(guess)
             else:
-                print(f"Отлично! В слове есть буква {guess}.")
+                print(f"\nОтлично! В слове есть буква {guess}.")
                 guessed_letters.append(guess)
                 word_as_list = list(word_completion)
                 indices = [i for i, letter in enumerate(word) if letter == guess]
@@ -40,16 +40,16 @@ def play(word):
                     guessed = True
         elif len(guess) == len(word) and guess.isalpha():
             if guess in guessed_words:
-                print(f"Вы уже угадали слово {guess}.")
+                print(f"\nВы уже загадывали слово {guess}.")
             elif guess != word:
-                print("Вы не угадали слово.")
+                print("\nВы не угадали слово.")
                 tries -= 1
                 guessed_words.append(guess)
             else:
                 guessed = True
                 word_completion = word
         else:
-            print("Неправильный ввод.")
+            print("\nНеправильный ввод.")
         print(display_hangman(tries))
         print(word_completion + "\n")
     if guessed:
@@ -60,7 +60,7 @@ def play(word):
 
 
 def display_hangman(tries):
-    stages = [  """
+    stages = ["""
                    --------
                    |      |
                    |      O
@@ -70,65 +70,65 @@ def display_hangman(tries):
                    -
                 """,
 
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |     / 
-                   -
-                """,
+              """
+                 --------
+                 |      |
+                 |      O
+                 |     \\|/
+                 |      |
+                 |     / 
+                 -
+              """,
 
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |      
-                   -
-                """,
+              """
+                 --------
+                 |      |
+                 |      O
+                 |     \\|/
+                 |      |
+                 |      
+                 -
+              """,
 
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|
-                   |      |
-                   |     
-                   -
-                """,
+              """
+                 --------
+                 |      |
+                 |      O
+                 |     \\|
+                 |      |
+                 |     
+                 -
+              """,
 
-                """
-                   --------
-                   |      |
-                   |      O
-                   |      |
-                   |      |
-                   |     
-                   -
-                """,
+              """
+                 --------
+                 |      |
+                 |      O
+                 |      |
+                 |      |
+                 |     
+                 -
+              """,
 
-                """
-                   --------
-                   |      |
-                   |      O
-                   |    
-                   |      
-                   |     
-                   -
-                """,
+              """
+                 --------
+                 |      |
+                 |      O
+                 |    
+                 |      
+                 |     
+                 -
+              """,
 
-                """
-                   --------
-                   |      |
-                   |      
-                   |    
-                   |      
-                   |     
-                   -
-                """]
+              """
+                 --------
+                 |      |
+                 |      
+                 |    
+                 |      
+                 |     
+                 -
+              """]
     return stages[tries]
 
 
@@ -142,12 +142,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
